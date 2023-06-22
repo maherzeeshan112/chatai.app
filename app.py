@@ -134,7 +134,7 @@ def index():
         # Cohere
         driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/div[3]/div/div[1]/div/div[5]/div/div/div").click()
         driver.find_element(By.NAME, "search").send_keys("Restaurants in Lahore")
-        time.sleep(1)
+        time.sleep(2)
         actions = ActionChains(driver)
         actions.send_keys(Keys.ENTER * 1)
         actions.perform()
