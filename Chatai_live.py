@@ -8,6 +8,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from selenium import webdriver
+from selenium.common import NoSuchElementException
 
 from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.common.by import By
@@ -92,10 +93,10 @@ def index():
         print(signin)
         time.sleep(2)
         driver.get("https://ui.chatai.com/home")
-        time.sleep(2)
+        time.sleep(3)
         # remaining prompts
         pr = driver.find_element(By.XPATH,
-                                 "/html/body/div/div[2]/div[2]/div[3]/div/div[2]/div[3]/div[1]/div[1]/div/p").text
+                                 "/html/body/div/div[2]/div/div[3]/div/div[2]/div[3]/div[1]/div[1]/div/p").text
         time.sleep(1)
         print(pr)
         time.sleep(3)
@@ -105,9 +106,18 @@ def index():
         actions.send_keys(Keys.ENTER * 1)
         actions.perform()
         time.sleep(5)
-        print(prompt1)
-        msggpt3 = driver.find_element(By.XPATH,
-                                  "/html/body/div[1]/div[2]/div[2]/div[2]/div/div[2]/div[3]/div[3]/div/div/div/p[2]").text
+        try:
+
+            msggpt3 = driver.find_element(By.XPATH,
+                                          "/html/body/div/div[2]/div/div[2]/div/div[2]/div[3]/div[3]/div/div/div/p[2]").text
+
+            print("GPT 3.5 is Working")
+
+        except NoSuchElementException:
+            print("GPT 3.5 is Not Working")
+            msggpt3 = "Chat GPT 3.5 is Not Working, Looks like the model is down"
+
+
         time.sleep(2)
         # chat gpt 4.0
         driver.find_element(By.XPATH,
@@ -119,9 +129,18 @@ def index():
         actions.send_keys(Keys.ENTER * 1)
         actions.perform()
         time.sleep(8)
-        gpt4 = driver.find_element(By.XPATH, "/html/body/div/div[2]/div[2]/div[2]/div/div[2]/div[3]/div[3]/div/div/div/p[2]/p").text
+        try:
 
-        print("GPT 4.0 is Working")
+            gpt4 = driver.find_element(By.XPATH,
+                                       "/html/body/div/div[2]/div/div[2]/div/div[2]/div[3]/div[3]/div/div/div/p[2]/p").text
+
+            print("GPT 4.0 is Working")
+
+        except NoSuchElementException:
+            print("GPT 4.0 is Not Working")
+            gpt4 = "Chat GPT 4.0 is Not Working, Looks like the model is down"
+        time.sleep(3)
+
         # Picasso
         driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/div[3]/div/div[1]/div/div[3]/div/div").click()
         driver.find_element(By.NAME, "search").send_keys(a)
@@ -134,16 +153,24 @@ def index():
         #img_element = driver.find_element(By.XPATH,
            # "/html/body/div/div[2]/div[2]/div[2]/div/div[2]/div[3]/div[3]/div/div/div/p[2]")
        # pcs = img_element.get_attribute("src")
+        try:
 
-        element = driver.find_element(By.XPATH, "/html/body/div/div[2]/div[2]/div[2]/div/div[2]/div[3]/div[3]/div/div/div/p[2]")
+            element = driver.find_element(By.XPATH, "/html/body/div/div[2]/div[2]/div[2]/div/div[2]/div[3]/div[3]/div/div/div/p[2]")
 
-        # Execute JavaScript to retrieve the hidden element's text content
-        hidden_text = driver.execute_script("return arguments[0].textContent;", element)
 
-        print(hidden_text)
-        pcs = hidden_text
+
+
+            # Execute JavaScript to retrieve the hidden element's text content
+            hidden_text = driver.execute_script("return arguments[0].textContent;", element)
+
+            print(hidden_text)
+            pcs = hidden_text
+            print("picasso is working")
+        except NoSuchElementException:
+            print("Picasso is not Working")
+            pcs = "Picasso Not Working, Looks like the model is down"
         time.sleep(3)
-        print("picasso working")
+
         # Ai2i
         driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/div[3]/div/div[1]/div/div[4]/div/div/div").click()
         driver.find_element(By.NAME, "search").send_keys("water formula")
@@ -152,9 +179,17 @@ def index():
         actions.send_keys(Keys.ENTER * 1)
         actions.perform()
         time.sleep(10)
-        ai2i = driver.find_element(By.XPATH, "/html/body/div/div[2]/div[2]/div[2]/div/div[2]/div[3]/div[3]/div/div").text
+        try:
+
+            ai2i = driver.find_element(By.XPATH,
+                                       "/html/body/div/div[2]/div/div[2]/div/div[2]/div[3]/div[3]/div/div/div").text
+            print("Ai2i is working")
+        except NoSuchElementException:
+            print("Ai2i is Not Working")
+            ai2i = "Ai2i is Not Working, Looks like the model is down"
+
         time.sleep(3)
-        print("Ai2i working")
+
         # Cohere
         driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/div[3]/div/div[1]/div/div[5]/div/div/div").click()
         driver.find_element(By.NAME, "search").send_keys("Restaurants in Lahore")
@@ -163,9 +198,17 @@ def index():
         actions.send_keys(Keys.ENTER * 1)
         actions.perform()
         time.sleep(10)
-        coh= driver.find_element(By.XPATH, "/html/body/div/div[2]/div[2]/div[2]/div/div[2]/div[3]/div[3]/div/div/div").text
+        try:
+
+            coh = driver.find_element(By.XPATH,
+                                      "/html/body/div/div[2]/div/div[2]/div/div[2]/div[3]/div[3]/div/div/div").text
+            print("Cohere working")
+        except NoSuchElementException:
+            print("Cohere is Not Working")
+            coh = "Cohere is Not Working, Looks like the model is down"
+
         time.sleep(2)
-        print("cohere working")
+
         # Huggingface hub
         driver.find_element(By.XPATH,
                             "/html/body/div[1]/div[2]/div/div[3]/div/div[1]/div/div[6]/div/div/div/div[1]").click()
@@ -175,9 +218,20 @@ def index():
         actions.send_keys(Keys.ENTER * 1)
         actions.perform()
         time.sleep(10)
-        #hfh=driver.find_element(By.XPATH, "/html/body/div/div[2]/div[2]/div[2]/div/div[2]/div[3]/div[3]/div/div/div").text
+        try:
+
+            hfh = driver.find_element(By.XPATH,
+                                      "/html/body/div/div[2]/div[2]/div[2]/div/div[2]/div[3]/div[3]/div/div/div").text
+
+            print("HuggingFace Hub is Working")
+
+        except NoSuchElementException:
+            print("HuggingFace Hub is Not Working")
+            hfh = "HuggingFace Hub will launch soon, This model is still in development process"
+
+
         time.sleep(2)
-        print("Huggingface hub working")
+
 
         # whatsapp message
         # driver.get("https://wp.chatai.com/")
@@ -219,19 +273,19 @@ def index():
                 smtp.quit()
 
         # Sender's credentials
-        sender_email = "zrafique789@gmail.com"
-        sender_password = "pwpfajnzearhtehr"
+        sender_email = "testbotforpython112@gmail.com"
+        sender_password = "uayyndxyallcivne"
 
         # Recipient's email
         recipient_email = "zeshan146@gmail.com"
 
         # Email content
         subject = "Test Automation Completed and result is in Body"
-        message = f"This is the email address {generate_email()}\n & this is the password {pswrd}\n, Remaining prompts are '{pr}'\n. {signup}\n, {signin}\n, {prompt1} the response is '{msggpt3}'\n, For Picasso the animal name is '{a}' & Response is '{pcs}'\n, Ai2i response is '{ai2i}'\n, Cohere`s response is '{coh}."
+        message = f"This is the email address {generate_email()}\n & this is the password {pswrd}\n, Remaining prompts are '{pr}'\n. {signup}\n, {signin}\n, {prompt1} the response is '{msggpt3}'\n, For Picasso the animal name is '{a}' & Response is '{pcs}'\n, Ai2i response is '{ai2i}'\n, Cohere`s response is '{coh}. Hugging face hub response is '{hfh}'."
 
         # Send email
         send_email(sender_email, sender_password, recipient_email, subject, message)
-        return jsonify(Signup= signup, email= generate_email(), password=pswrd, Remaining_prompts= pr, signin= signin, My_prompt=prompt1, Response_from_chatgpt3=msggpt3, chatgpt4=gpt4, picasso=pcs, Ai2i=ai2i, Cohere=coh,) #Huggingfacehub=hfh, )
+        return jsonify(Signup= signup, email= generate_email(), password=pswrd, Remaining_prompts= pr, signin= signin, My_prompt=prompt1, Response_from_chatgpt3=msggpt3, chatgpt4=gpt4, picasso=pcs, Ai2i=ai2i, Cohere=coh, Huggingfacehub=hfh, )
     except Exception as e:
         print("An Exception occur")
         print(e)
