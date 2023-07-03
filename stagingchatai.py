@@ -29,9 +29,20 @@ def index():
         driver = webdriver.Chrome(options=options)
         driver.implicitly_wait(10)
 
-        driver.get("https://wp.chatai.com/")
-        time.sleep(2)
-        driver.find_element(By.XPATH, "/html/body/div[6]/div/div/div[1]/div/a[1]/img").click()
+        import random
+
+        # List of animal names
+        animal_names = [
+            "Elephant", "Tiger", "Lion", "Giraffe", "Zebra", "Hippopotamus", "Kangaroo",
+            "Panda", "Koala", "Dolphin", "Whale", "Octopus", "Gorilla", "Penguin", "Ostrich",
+            "Cheetah", "Leopard", "Rhinoceros", "Polar Bear", "Monkey", "Cat", "Dog", "Horse", "Shark"
+        ]
+
+        a = random_animal = random.choice(animal_names)
+        print("Random Animal Name:", random_animal)
+
+
+        driver.get("https://chatnowwithai.netlify.app/")
         time.sleep(2)
         driver.find_element(By.NAME, "search").send_keys("hi")
         time.sleep(1)
@@ -71,8 +82,8 @@ def index():
                             "/html/body/div[1]/div[2]/div/div[3]/div/div[2]/div[4]/div/div/div/div/div/div/button[2]").click()
         time.sleep(2)
         # sign-in process
-        driver.find_element(By.NAME, "email").send_keys("maherzeshan112@gmail.com")
-        driver.find_element(By.NAME, "password").send_keys("123456789")
+        driver.find_element(By.NAME, "email").send_keys("dirih49632@djpich.com")
+        driver.find_element(By.NAME, "password").send_keys("112@Maher")
         time.sleep(1)
         driver.find_element(By.XPATH, "/html/body/div/div[2]/div[2]/form/button").click()
         time.sleep(2)
@@ -111,14 +122,19 @@ def index():
         print("GPT 4.0")
         # Picasso
         driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/div[3]/div/div[1]/div/div[3]/div/div").click()
-        driver.find_element(By.NAME, "search").send_keys("Cat")
+        driver.find_element(By.NAME, "search").send_keys(a)
         time.sleep(1)
         actions = ActionChains(driver)
         actions.send_keys(Keys.ENTER * 1)
         actions.perform()
         time.sleep(10)
-        pcs= (driver.find_element(By.XPATH, "(//p[contains(@class, 'image-text')])").text)
+        img_element = driver.find_element(By.XPATH, "//img[@src='https://chatai-pub-dev.s3.eu-north-1.amazonaws.com/8bb3befb-64a9-48cb-925d-0c3d1b8131ac.png']")
+        pcs = img_element.get_attribute("src")
+        print(pcs)
+
         time.sleep(3)
+        print(pcs)
+        time.sleep(1)
         print("picasso working")
         # Ai2i
         driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/div[3]/div/div[1]/div/div[4]/div/div/div").click()
@@ -139,7 +155,7 @@ def index():
         actions.send_keys(Keys.ENTER * 1)
         actions.perform()
         time.sleep(10)
-        #coh= driver.find_element(By.XPATH, "/html/body/div/div[2]/div[2]/div[2]/div/div[2]/div[3]/div[3]/div/div/div").text
+        coh= driver.find_element(By.XPATH, "/html/body/div/div[2]/div[2]/div[2]/div/div[2]/div[3]/div[3]/div/div/div").text
         time.sleep(2)
         print("cohere working")
         # Huggingface hub
@@ -203,15 +219,15 @@ def index():
 
         # Email content
         subject = "Test Automation Completed and result is in Body"
-        message = f"This is the email address {generate_email()}\n & this is the password {pswrd}\n, Remaining prompts are '{pr}'\n. {signup}\n, {signin}\n, {prompt1} the response is '{msggpt3}'."
+        message = f"This is the email address {generate_email()}\n & this is the password {pswrd}\n, Remaining prompts are '{pr}'\n. {signup}\n, {signin}\n, {prompt1} the response is '{msggpt3}', For Picasso the animal name is '{a}' & Response is '{pcs}', Ai2i response is '{ai2i}', Cohere`s response is '{coh}."
 
         # Send email
         send_email(sender_email, sender_password, recipient_email, subject, message)
-        return jsonify(Signup= signup, email= generate_email(), password=pswrd, Remaining_prompts= pr, signin= signin, My_prompt=prompt1, Response_from_chatgpt3=msggpt3, chatgpt4=gpt4, Ai2i=ai2i, picasso=pcs,) #Cohere=coh, #Huggingfacehub=hfh)
+        return jsonify(Signup= signup, email= generate_email(), password=pswrd, Remaining_prompts= pr, signin= signin, My_prompt=prompt1, Response_from_chatgpt3=msggpt3, chatgpt4=gpt4, Ai2i=ai2i, picasso=pcs, Cohere=coh,) #Huggingfacehub=hfh)
     except Exception as e:
         print("An Exception occur")
         print(e)
         return jsonify({'error': "An Exception occur"})
 
-app.run(host='0.0.0.0',port=5003)
+app.run(host='0.0.0.0',port=3005)
 
