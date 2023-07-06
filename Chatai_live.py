@@ -23,8 +23,7 @@ def index():
         options.add_argument("--headless")
         # driver = webdriver.Chrome(executable_path="C:\\Users\\\LENOVO\\Downloads\\chromedriver.exe")
         pswrd = "123456789"
-        signup = "Sign-up Successfully"
-        signin = "Sign-in Successfully"
+
         prompt1 = "My Chat GPT 3.5 prompt is 'What is the capital of punjab,pk?"
         options.add_argument("window-size=1920,1080")
         driver = webdriver.Chrome(options=options)
@@ -73,9 +72,21 @@ def index():
         time.sleep(1)
         driver.find_element(By.NAME, "password").send_keys("123456789")
         time.sleep(1)
-        driver.find_element(By.CLASS_NAME, "account-button").click()
+
+        try:
+
+            driver.find_element(By.CLASS_NAME, "account-button").click()
+            time.sleep(3)
+
+
+            signup = "Sign-up Successfully"
+
+        except NoSuchElementException:
+            print("Sign-up is Not Working")
+            signup = "Sign-up is Not Working"
         time.sleep(3)
-        print(signup)
+
+
 
         time.sleep(3)
         #signout
@@ -88,9 +99,20 @@ def index():
         driver.find_element(By.NAME, "email").send_keys("lasaxo8985@soremap.com")
         driver.find_element(By.NAME, "password").send_keys("123456789")
         time.sleep(1)
-        driver.find_element(By.XPATH, "/html/body/div/div[2]/div[2]/form/button").click()
-        time.sleep(2)
-        print(signin)
+
+        try:
+
+            driver.find_element(By.XPATH, "/html/body/div/div[2]/div[2]/form/button").click()
+            time.sleep(2)
+
+
+            signin= "Sign-in Successfully"
+        except NoSuchElementException:
+            print("Sign-in is not working")
+            signin = "Sign-in is not working"
+        time.sleep(3)
+
+
         time.sleep(2)
         driver.get("https://ui.chatai.com/home")
         time.sleep(3)
@@ -155,7 +177,7 @@ def index():
        # pcs = img_element.get_attribute("src")
         try:
 
-            element = driver.find_element(By.XPATH, "/html/body/div/div[2]/div[2]/div[2]/div/div[2]/div[3]/div[3]/div/div/div/p[2]")
+            element = driver.find_element(By.XPATH, "/html/body/div/div[2]/div/div[2]/div/div[2]/div[3]/div[3]/div/div/div/p[2]")
 
 
 
