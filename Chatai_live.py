@@ -281,7 +281,10 @@ def index():
 
 
         time.sleep(2)
-
+        pr2 = driver.find_element(By.XPATH,
+                                 "/html/body/div/div[2]/div/div[3]/div/div[2]/div[3]/div[1]/div[1]/div/p").text
+        time.sleep(1)
+        print(pr2)
 
         # whatsapp message
         # driver.get("https://wp.chatai.com/")
@@ -335,7 +338,7 @@ def index():
 
         # Send email
         send_email(sender_email, sender_password, recipient_email, subject, message)
-        return jsonify(Signup= signup, email= email, password=pswrd, Remaining_prompts= pr, signin= signin, My_prompt=prompt1, Response_from_chatgpt3=msggpt3, chatgpt4=gpt4, picasso=pcs, Ai2i=ai2i, Cohere=coh, Huggingfacehub=hfh, )
+        return jsonify(Signup= signup, email= email, password=pswrd, Remaining_prompts= pr, signin= signin, My_prompt=prompt1, Response_from_chatgpt3=msggpt3, chatgpt4=gpt4, picasso=pcs, Ai2i=ai2i, Cohere=coh, Huggingfacehub=hfh, pr2= pr2 )
     except Exception as e:
         print("An Exception occur")
         print(e)
