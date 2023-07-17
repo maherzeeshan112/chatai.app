@@ -22,7 +22,7 @@ def index():
         options = webdriver.ChromeOptions()
 
 
-        #options.add_argument("--headless")
+        options.add_argument("--headless")
         # driver = webdriver.Chrome(executable_path="C:\\Users\\\LENOVO\\Downloads\\chromedriver.exe")
         pswrd = "123456789"
 
