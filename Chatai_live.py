@@ -281,6 +281,7 @@ def index():
 
 
         time.sleep(2)
+        00
         pr2 = driver.find_element(By.XPATH,
                                  "/html/body/div/div[2]/div/div[3]/div/div[2]/div[3]/div[1]/div[1]/div/p").text
         time.sleep(1)
@@ -330,11 +331,11 @@ def index():
         sender_password = "uayyndxyallcivne"
 
         # Recipient's email
-        recipient_email = "zeshan146@gmail.com"
+        recipient_email =  "Arpit@chatai.com"
 
         # Email content
         subject = "Test Automation Completed and result is in Body"
-        message = f"This is the email address {email}\n & this is the password {pswrd}\n, Remaining prompts are '{pr}'\n. {signup}\n, {signin}\n, {prompt1} the response is '{msggpt3}'\n, For Picasso the animal name is '{a}' & Response is '{pcs}'\n, Ai2i response is '{ai2i}'\n, Cohere`s response is '{coh}. Hugging face hub response is '{hfh}'."
+        message = f"This is the email address {email}\n & this is the password {pswrd}\n, Remaining prompts are '{pr}'\n. {signup}\n, {signin}\n, {prompt1} the response is '{msggpt3}'\n, Chat GPT4.0 response is {gpt4},  For Picasso the animal name is '{a}' & Response is '{pcs}'\n, Ai2i response is '{ai2i}'\n, Cohere`s response is '{coh}. Hugging face hub response is '{hfh}'."
 
         # Send email
         send_email(sender_email, sender_password, recipient_email, subject, message)
