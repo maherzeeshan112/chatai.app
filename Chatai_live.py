@@ -22,7 +22,7 @@ def index():
         options = webdriver.ChromeOptions()
 
 
-        options.add_argument("--headless")
+        #options.add_argument("--headless")
         # driver = webdriver.Chrome(executable_path="C:\\Users\\\LENOVO\\Downloads\\chromedriver.exe")
         pswrd = "123456789"
 
@@ -60,8 +60,7 @@ def index():
         driver.get("https://wp.chatai.com/")
         time.sleep(2)
         driver.find_element(By.XPATH, "/html/body/div[6]/div/div/div[1]/div/a[1]/img").click()
-        time.sleep(5)
-        driver.find_element(By.XPATH, "//html/body/div/div[2]/div[2]/p/a/span").click()
+
         time.sleep(5)
         driver.find_element(By.NAME, "first_name").send_keys("Testing")
         time.sleep(1)
