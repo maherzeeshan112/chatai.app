@@ -3,7 +3,7 @@ from flask import Flask, jsonify
 import pyperclip
 import time
 import re
-
+from selenium.webdriver.support.ui import WebDriverWait
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -22,7 +22,7 @@ def index():
         options = webdriver.ChromeOptions()
 
 
-        #options.add_argument("--headless")
+        options.add_argument("--headless")
         # driver = webdriver.Chrome(executable_path="C:\\Users\\\LENOVO\\Downloads\\chromedriver.exe")
         pswrd = "123456789"
 
@@ -30,7 +30,7 @@ def index():
         options.add_argument("window-size=1920,1080")
 
         driver = webdriver.Chrome(options=options)
-        driver.implicitly_wait(10)
+        driver.implicitly_wait(15)
 
 
         import random
