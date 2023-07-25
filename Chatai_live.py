@@ -22,7 +22,7 @@ def index():
         options = webdriver.ChromeOptions()
 
 
-        options.add_argument("--headless")
+        #options.add_argument("--headless")
         # driver = webdriver.Chrome(executable_path="C:\\Users\\\LENOVO\\Downloads\\chromedriver.exe")
         pswrd = "123456789"
 
@@ -62,9 +62,9 @@ def index():
         driver.find_element(By.XPATH, "/html/body/div[6]/div/div/div[1]/div/a[1]/img").click()
 
         time.sleep(5)
-        driver.find_element(By.NAME, "first_name").send_keys("Testing")
+        driver.find_element(By.ID, "sign-up-first_name").send_keys("Testing")
         time.sleep(1)
-        driver.find_element(By.NAME, "last_name").send_keys("Bot Python")
+        driver.find_element(By.ID, "sign-up-last_name").send_keys("Bot Python")
         time.sleep(1)
 
         #def generate_email():
@@ -73,67 +73,64 @@ def index():
            # return email
 
 
-        driver.find_element(By.NAME, "email").send_keys(email)
+        driver.find_element(By.ID, "sign-up-email").send_keys(email)
 
         time.sleep(1)
-        driver.find_element(By.NAME, "password").send_keys("123456789")
+        driver.find_element(By.ID, "sign-up-password").send_keys("123456789")
         time.sleep(1)
 
         try:
 
-            driver.find_element(By.CLASS_NAME, "confirm-details").click()
+            driver.find_element(By.ID, "sign-up-btn").click()
             time.sleep(3)
             driver.switch_to.window(driver.window_handles[0])
             time.sleep(25)
-
-
 
             # Refresh the email inbox
             driver.find_element(By.XPATH, "/html/body/div[4]/div/div[3]/div[2]/form/table/tbody/tr[1]").click()
 
             # Wait for the email to appear
             time.sleep(5)
-            text_with_numbers = driver.find_element(By.XPATH, "/html/body/div[4]/div/div[3]/div[2]/div/div/div[2]/div/pre").text
+            text_with_numbers = driver.find_element(By.XPATH, "/html/body/div[4]/div/div[3]/div[2]/div/div/div[2]/div/center/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr/td/div/div[1]/p").text
             otp = re.findall(r'\d+', text_with_numbers)
             print('Numbers found:', otp)
 
             time.sleep(2)
             driver.switch_to.window(driver.window_handles[1])
             time.sleep(2)
-            driver.find_element(By.ID, "id").send_keys(otp)
+            driver.find_element(By.ID, "otp").send_keys(otp)
             time.sleep(2)
-            driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div[2]/div/form/button").click()
 
-
+            driver.find_element(By.ID, "otp-btn").click()
+            print("otp accepted")
 
             signup = "Sign-up Successfully"
-
+            print("Sign-up Successfully")
         except NoSuchElementException:
             print("Sign-up is Not Working")
             signup = "Sign-up is Not Working"
-        time.sleep(3)
 
+            time.sleep(4)
 
-
-        time.sleep(3)
         #signout
-        driver.find_element(By.XPATH, "/html/body/div/div[2]/div/div[3]/div/div[2]/div[3]/div[2]/button[2]").click()
+        driver.find_element(By.ID, "logout").click()
         time.sleep(3)
-        driver.find_element(By.XPATH,
-                            "/html/body/div[1]/div[2]/div/div[3]/div/div[2]/div[4]/div/div/div/div/div/div/button[2]").click()
+        driver.find_element(By.ID, "confirm").click()
         time.sleep(2)
         # sign-in process
-        driver.find_element(By.NAME, "email").send_keys(email)
-        driver.find_element(By.NAME, "password").send_keys("123456789")
+        driver.find_element(By.ID, "sign-in-email").send_keys(email)
+        driver.find_element(By.ID, "sign-in-password").send_keys("123456789")
         time.sleep(1)
 
         try:
 
-            driver.find_element(By.XPATH, "/html/body/div/div[2]/div[2]/form/button").click()
+            driver.find_element(By.ID, "sign-in-btn").click()
             time.sleep(2)
 
 
             signin= "Sign-in Successfully"
+            print("Sign-in Successfully")
+
         except NoSuchElementException:
             print("Sign-in is not working")
             signin = "Sign-in is not working"
@@ -144,8 +141,7 @@ def index():
         driver.get("https://ui.chatai.com/home")
         time.sleep(3)
         # remaining prompts
-        pr = driver.find_element(By.XPATH,
-                                 "/html/body/div/div[2]/div/div[3]/div/div[2]/div[3]/div[1]/div[1]/div/p").text
+        pr = driver.find_element(By.ID,"remaining-prompts").text
         time.sleep(1)
         print(pr)
         time.sleep(3)
@@ -169,8 +165,7 @@ def index():
 
         time.sleep(2)
         # chat gpt 4.0
-        driver.find_element(By.XPATH,
-                            "/html/body/div[1]/div[2]/div/div[3]/div/div[1]/div/div[2]/div/div/div/div[1]/p").click()
+        driver.find_element(By.ID, "22G1").click()
         time.sleep(1)
         driver.find_element(By.NAME, "search").send_keys("What is the capital of KPK,pk?")
         time.sleep(1)
@@ -191,7 +186,7 @@ def index():
         time.sleep(3)
 
         # Picasso
-        driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/div[3]/div/div[1]/div/div[3]/div/div").click()
+        driver.find_element(By.ID, "2A31").click()
         driver.find_element(By.NAME, "search").send_keys(a)
         time.sleep(1)
         actions = ActionChains(driver)
@@ -221,7 +216,7 @@ def index():
         time.sleep(3)
 
         # Ai2i
-        driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/div[3]/div/div[1]/div/div[4]/div/div/div").click()
+        driver.find_element(By.ID, "2DK1").click()
         driver.find_element(By.NAME, "search").send_keys("water formula")
         time.sleep(1)
         actions = ActionChains(driver)
@@ -240,7 +235,7 @@ def index():
         time.sleep(3)
 
         # Cohere
-        driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/div[3]/div/div[1]/div/div[5]/div/div/div").click()
+        driver.find_element(By.ID, "2881").click()
         driver.find_element(By.NAME, "search").send_keys("Restaurants in Lahore")
         time.sleep(2)
         actions = ActionChains(driver)
@@ -259,8 +254,7 @@ def index():
         time.sleep(2)
 
         # Huggingface hub
-        driver.find_element(By.XPATH,
-                            "/html/body/div[1]/div[2]/div/div[3]/div/div[1]/div/div[6]/div/div/div/div[1]").click()
+        driver.find_element(By.ID, "2ZQ1").click()
         driver.find_element(By.NAME, "search").send_keys("Best night stay in hunza")
         time.sleep(1)
         actions = ActionChains(driver)
@@ -281,8 +275,7 @@ def index():
 
         time.sleep(2)
         00
-        pr2 = driver.find_element(By.XPATH,
-                                 "/html/body/div/div[2]/div/div[3]/div/div[2]/div[3]/div[1]/div[1]/div/p").text
+        pr2 = driver.find_element(By.ID,"remaining-prompts").text
         time.sleep(1)
         print(pr2)
 
