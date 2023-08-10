@@ -21,7 +21,6 @@ def index():
 
 
         options.add_argument("--headless")
-        # driver = webdriver.Chrome(executable_path="C:\\Users\\\LENOVO\\Downloads\\chromedriver.exe")
         pswrd = "123456789"
 
         options.add_argument("window-size=1920,1080")
@@ -63,12 +62,6 @@ def index():
         time.sleep(1)
         driver.find_element(By.ID, "sign-up-last_name").send_keys("Bot Python")
         time.sleep(1)
-
-        #def generate_email():
-           # random_string = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
-           # email = f"{random_string}@sqa.com"
-           # return email
-
 
         driver.find_element(By.ID, "sign-up-email").send_keys(email)
 
@@ -190,10 +183,7 @@ def index():
         actions.send_keys(Keys.ENTER * 1)
         actions.perform()
         time.sleep(10)
-        #pcs= (driver.find_element(By.XPATH, "(//p[contains(@id, 'picasso-response')])").text)
-        #img_element = driver.find_element(By.XPATH,
-           # "/html/body/div/div[2]/div[2]/div[2]/div/div[2]/div[3]/div[3]/div/div/div/p[2]")
-       # pcs = img_element.get_attribute("src")
+
         try:
 
             element = driver.find_element(By.XPATH, "/html/body/div/div[2]/div/div[2]/div/div[2]/div[3]/div[3]/div/div/div/p[2]")
@@ -201,7 +191,6 @@ def index():
 
 
 
-            # Execute JavaScript to retrieve the hidden element's text content
             hidden_text = driver.execute_script("return arguments[0].textContent;", element)
 
             print(hidden_text)
@@ -276,13 +265,6 @@ def index():
         time.sleep(1)
         print(pr2)
 
-        # whatsapp message
-        # driver.get("https://wp.chatai.com/")
-        # driver.find_element(By.XPATH, "/html/body/div[6]/div/div/div[1]/div/a[2]").click()
-        # time.sleep(2)
-        # driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/div[2]/div/section/div/div/div/div[2]/div[1]/a").click()
-        # time.sleep(2)
-        # driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/div[2]/div/section/div/div/div/div[3]/div/div/h4[2]/a/span")
 
         def send_email(sender_email, sender_password, recipient_email, subject, message):
             # Create a multipart message
