@@ -1,9 +1,7 @@
-import json
+
 from flask import Flask, jsonify
-import pyperclip
 import time
 import re
-from selenium.webdriver.support.ui import WebDriverWait
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -22,11 +20,10 @@ def index():
         options = webdriver.ChromeOptions()
 
 
-        #options.add_argument("--headless")
+        options.add_argument("--headless")
         # driver = webdriver.Chrome(executable_path="C:\\Users\\\LENOVO\\Downloads\\chromedriver.exe")
         pswrd = "123456789"
 
-        prompt1 = "My Chat GPT 3.5 prompt is 'What is the capital of punjab,pk?"
         options.add_argument("window-size=1920,1080")
 
         driver = webdriver.Chrome(options=options)
@@ -236,7 +233,7 @@ def index():
 
         # Cohere
         driver.find_element(By.ID, "2881").click()
-        driver.find_element(By.NAME, "search").send_keys("Restaurants in Lahore")
+        driver.find_element(By.NAME, "search").send_keys("Five steps to start driving a car")
         time.sleep(2)
         actions = ActionChains(driver)
         actions.send_keys(Keys.ENTER * 1)
@@ -323,15 +320,17 @@ def index():
         sender_password = "uayyndxyallcivne"
 
         # Recipient's email
-        recipient_email =  "Arpit@chatai.com"
+        recipient_email = "zeshan146@gmail.com"
 
         # Email content
         subject = "Test Automation Completed and result is in Body"
-        message = f"This is the email address {email}\n & this is the password {pswrd}\n, Remaining prompts are '{pr}'\n. {signup}\n, {signin}\n, {prompt1} the response is '{msggpt3}'\n, Chat GPT4.0 response is {gpt4},  For Picasso the animal name is '{a}' & Response is '{pcs}'\n, Ai2i response is '{ai2i}'\n, Cohere`s response is '{coh}. Hugging face hub response is '{hfh}'."
+        message = f"This is the email address {email}\n & this is the password {pswrd}\n, Remaining prompts are '{pr}'\n.{signup}\n, {signin}\n, The response from CHATGPT 3.5 is '{msggpt3}'\n, Chat GPT4.0 response is {gpt4},  For Picasso the animal name is '{a}' & Response is '{pcs}'\n, Ai2i response is '{ai2i}'\n, Cohere`s response is '{coh}. Hugging face hub response is '{hfh}'."
 
         # Send email
         send_email(sender_email, sender_password, recipient_email, subject, message)
-        return jsonify(Signup= signup, email= email, password=pswrd, Remaining_prompts= pr, signin= signin, My_prompt=prompt1, Response_from_chatgpt3=msggpt3, chatgpt4=gpt4, picasso=pcs, Ai2i=ai2i, Cohere=coh, Huggingfacehub=hfh, pr2= pr2 )
+        return jsonify(Signup=signup, email=email, password=pswrd, Remaining_prompts= pr, signin=signin,
+                       Response_from_chatgpt3=msggpt3, chatgpt4=gpt4, picasso=pcs, Ai2i=ai2i, Cohere=coh,
+                       Huggingfacehub=hfh, pr2=pr2)
     except Exception as e:
         print("An Exception occur")
         print(e)
