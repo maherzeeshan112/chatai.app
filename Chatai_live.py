@@ -1,23 +1,23 @@
-
+import pyperclip
 from flask import Flask, jsonify
 import time
 import re
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from selenium import webdriver
 from selenium.common import NoSuchElementException
-
+from selenium import webdriver
 from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.firefox.service import Service
 
 app = Flask(__name__)
 @app.route('/')
 def index():
     try:
-        service = Service(executable_path="C:\\Users\\\LENOVO\\Downloads\\chromedriver.exe")
-        options = webdriver.ChromeOptions()
+
+        service = Service(executable_path="C:\\Users\\\LENOVO\\Downloads\\geckodriver.exe")
+        options = webdriver.FirefoxOptions()
 
 
         options.add_argument("--headless")
@@ -25,9 +25,9 @@ def index():
 
         options.add_argument("window-size=1920,1080")
 
-        driver = webdriver.Chrome(options=options)
+        driver = webdriver.Firefox(options=options)
+        driver.maximize_window()
         driver.implicitly_wait(15)
-
 
         import random
 
@@ -46,7 +46,7 @@ def index():
         time.sleep(2)
 
         # Use the copied value
-        print( email)
+        print(email)
 
         driver.execute_script("window.open('about:blank', '_blank');")
 
@@ -74,14 +74,15 @@ def index():
             driver.find_element(By.ID, "sign-up-btn").click()
             time.sleep(3)
             driver.switch_to.window(driver.window_handles[0])
-            time.sleep(25)
+            time.sleep(15)
 
             # Refresh the email inbox
-            driver.find_element(By.XPATH, "/html/body/div[4]/div/div[3]/div[2]/form/table/tbody/tr[1]").click()
+            driver.find_element(By.XPATH, '/html/body/div[4]/div/div[3]/div[2]/form/table/tbody/tr[1]/td[3]').click()
 
             # Wait for the email to appear
             time.sleep(5)
-            text_with_numbers = driver.find_element(By.XPATH, "/html/body/div[4]/div/div[3]/div[2]/div/div/div[2]/div/center/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr/td/div/div[1]/p").text
+            text_with_numbers = driver.find_element(By.XPATH,
+                                                    "/html/body/div[4]/div/div[3]/div[2]/div/div/div[2]/div/center/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr/td/div/div[1]/p").text
             otp = re.findall(r'\d+', text_with_numbers)
             print('Numbers found:', otp)
 
