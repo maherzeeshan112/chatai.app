@@ -20,7 +20,7 @@ def index():
         options = webdriver.FirefoxOptions()
 
 
-        options.add_argument("--headless")
+        #options.add_argument("--headless")
         pswrd = "123456789"
 
         options.add_argument("window-size=1920,1080")
@@ -72,28 +72,28 @@ def index():
         try:
 
             driver.find_element(By.ID, "sign-up-btn").click()
-            time.sleep(3)
-            driver.switch_to.window(driver.window_handles[0])
-            time.sleep(15)
+            time.sleep(5)
+           # driver.switch_to.window(driver.window_handles[0])
+            #time.sleep(25)
 
             # Refresh the email inbox
-            driver.find_element(By.XPATH, '/html/body/div[4]/div/div[3]/div[2]/form/table/tbody/tr[1]/td[3]').click()
+            #driver.find_element(By.XPATH, '/html/body/div[4]/div/div[3]/div[2]/form/table/tbody/tr[1]/td[3]').click()
 
             # Wait for the email to appear
-            time.sleep(5)
-            text_with_numbers = driver.find_element(By.XPATH,
-                                                    "/html/body/div[4]/div/div[3]/div[2]/div/div/div[2]/div/center/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr/td/div/div[1]/p").text
-            otp = re.findall(r'\d+', text_with_numbers)
-            print('Numbers found:', otp)
+            #time.sleep(5)
+            #text_with_numbers = driver.find_element(By.XPATH,
+             #                                       "/html/body/div[4]/div/div[3]/div[2]/div/div/div[2]/div/center/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr/td/div/div[1]/p").text
+            #otp = re.findall(r'\d+', text_with_numbers)
+            #print('Numbers found:', otp)
 
-            time.sleep(2)
-            driver.switch_to.window(driver.window_handles[1])
-            time.sleep(2)
-            driver.find_element(By.ID, "otp").send_keys(otp)
-            time.sleep(2)
+            #time.sleep(2)
+            #driver.switch_to.window(driver.window_handles[1])
+            #time.sleep(2)
+            #driver.find_element(By.ID, "otp").send_keys(otp)
+            #time.sleep(2)
 
-            driver.find_element(By.ID, "otp-btn").click()
-            print("otp accepted")
+            #driver.find_element(By.ID, "otp-btn").click()
+            #print("otp accepted")
 
             signup = "Sign-up Successfully"
             print("Sign-up Successfully")
